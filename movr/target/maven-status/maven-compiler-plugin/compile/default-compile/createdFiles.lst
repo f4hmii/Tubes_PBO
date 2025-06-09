@@ -1,4 +1,1 @@
-com\movr\Main.class
 com\movr\model\Product.class
-com\movr\model\ProductDAO.class
-com\movr\database\DatabaseConnection.class

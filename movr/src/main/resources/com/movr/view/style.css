@@ -1,0 +1,27 @@
+/* Mengatur background dan font default untuk seluruh window */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #0099ff; /* Warna abu-abu muda */
+}
+
+/* Mengatur semua tombol */
+.button {
+    -fx-background-color: #007BFF; /* Warna biru */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5; /* Membuat sudut tombol sedikit melengkung */
+}
+
+.button:hover {
+    -fx-background-color: #0056b3; /* Warna biru lebih gelap saat mouse di atasnya */
+}
+
+/* Mengatur header kolom pada tabel */
+.table-view .column-header-background {
+    -fx-background-color: #37474F;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-weight: bold;
+}

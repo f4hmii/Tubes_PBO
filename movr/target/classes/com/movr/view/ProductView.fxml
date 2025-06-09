@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.movr.controller.ProductController">
+    <top>
+        <Label text="Manajemen Data Produk" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="24" />
+            </font>
+            <padding>
+                <Insets bottom="10" top="10" />
+            </padding>
+        </Label>
+    </top>
+    <center>
+        <TableView fx:id="productTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="150" text="Nama Produk" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="250" text="Deskripsi" />
+                <TableColumn fx:id="priceColumn" prefWidth="100" text="Harga" />
+                <TableColumn fx:id="stockColumn" prefWidth="75" text="Stok" />
+            </columns>
+            <BorderPane.margin>
+                <Insets left="10" right="10" />
+            </BorderPane.margin>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <GridPane hgap="10" vgap="10">
+                <Label text="Nama:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Deskripsi:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Harga:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <TextField fx:id="priceField" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label text="Stok:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="stockField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            </GridPane>
+            <HBox alignment="CENTER" spacing="10">
+                <Button onAction="#handleSave" text="Tambah Produk" />
+                <Button onAction="#handleUpdate" text="Update Produk Terpilih" style="-fx-background-color: #F0E68C;" />
+                <Button onAction="#handleDelete" text="Hapus Produk Terpilih" style="-fx-background-color: #FF6347;" textFill="WHITE" />
+            </HBox>
+            <Label fx:id="statusLabel" alignment="CENTER" minHeight="20" style="-fx-font-weight: bold;" />
+        </VBox>
+    </bottom>
+</BorderPane>

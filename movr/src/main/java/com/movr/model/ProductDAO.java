@@ -1,6 +1,8 @@
 package com.movr.model;
 
-import com.movr.database.DatabaseConnection;
+// PERBAIKAN ADA DI BARIS IMPORT DI BAWAH INI
+import com.movr.database.DatabaseConnection; 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
