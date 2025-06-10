@@ -1,6 +1,5 @@
 package com.movr.model;
 
-// PERBAIKAN ADA DI BARIS IMPORT DI BAWAH INI
 import com.movr.database.DatabaseConnection; 
 
 import java.sql.*;
@@ -16,7 +15,7 @@ public class ProductDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
-            stmt.setDouble(3, product.getPrice());
+            stmt.setLong(3, product.getPrice()); // DIUBAH
             stmt.setInt(4, product.getStock());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -37,7 +36,7 @@ public class ProductDAO {
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("description"),
-                    rs.getDouble("price"),
+                    rs.getLong("price"), // DIUBAH
                     rs.getInt("stock")
                 ));
             }
@@ -54,7 +53,7 @@ public class ProductDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
-            stmt.setDouble(3, product.getPrice());
+            stmt.setLong(3, product.getPrice()); // DIUBAH
             stmt.setInt(4, product.getStock());
             stmt.setInt(5, product.getId());
             return stmt.executeUpdate() > 0;

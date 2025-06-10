@@ -13,12 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ProductController {
 
-    // Semua @FXML dan deklarasi variabel tetap sama
     @FXML private TableView<Product> productTable;
     @FXML private TableColumn<Product, Integer> idColumn;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> descriptionColumn;
-    @FXML private TableColumn<Product, Double> priceColumn;
+    @FXML private TableColumn<Product, Long> priceColumn; // DIUBAH (Best practice: sesuaikan generic type)
     @FXML private TableColumn<Product, Integer> stockColumn;
     @FXML private TextField nameField;
     @FXML private TextField descriptionField;
@@ -30,7 +29,6 @@ public class ProductController {
 
     @FXML
     public void initialize() {
-        // Initialize tetap sama
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -39,39 +37,24 @@ public class ProductController {
         productTable.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> showProductDetails(newValue));
         
-        // Memuat data pertama kali saat aplikasi dibuka
         loadProductData();
     }
     
-    // --- DI SINI BAGIAN YANG DILENGKAPI ---
-
-    /**
-     * Mengambil data terbaru dari database dan menampilkannya ke tabel.
-     */
     private void loadProductData() {
         productTable.setItems(FXCollections.observableArrayList(productDAO.getAllProducts()));
     }
     
-    /**
-     * Mengisi form input berdasarkan baris yang dipilih di tabel.
-     * @param product produk yang dipilih.
-     */
     private void showProductDetails(Product product) {
         if (product != null) {
-            // Jika ada produk yang dipilih, isi form
             nameField.setText(product.getName());
             descriptionField.setText(product.getDescription());
-            priceField.setText(Double.toString(product.getPrice()));
+            priceField.setText(Long.toString(product.getPrice())); // DIUBAH
             stockField.setText(Integer.toString(product.getStock()));
         } else {
-            // Jika pilihan dibatalkan, kosongkan form
             clearFields();
         }
     }
 
-    /**
-     * Mengosongkan semua isian form.
-     */
     private void clearFields() {
         nameField.clear();
         descriptionField.clear();
@@ -80,20 +63,18 @@ public class ProductController {
         productTable.getSelectionModel().clearSelection();
     }
 
-    // --- Method handler untuk tombol-tombol (tidak berubah) ---
-
     @FXML
     private void handleSave() {
         try {
             Product product = new Product(0, nameField.getText(), descriptionField.getText(),
-                Double.parseDouble(priceField.getText()), Integer.parseInt(stockField.getText()));
+                Long.parseLong(priceField.getText()), Integer.parseInt(stockField.getText())); // DIUBAH
             
             ProductAction tambahAction = new TambahProduct(productDAO, product);
             
             if (tambahAction.execute()) {
                 statusLabel.setText("Produk baru berhasil ditambahkan!");
-                loadProductData(); // Refresh tabel
-                clearFields();     // Kosongkan form
+                loadProductData();
+                clearFields();
             } else {
                 statusLabel.setText("Gagal menambahkan produk.");
             }
@@ -112,15 +93,16 @@ public class ProductController {
         try {
             selectedProduct.setName(nameField.getText());
             selectedProduct.setDescription(descriptionField.getText());
-            selectedProduct.setPrice(Double.parseDouble(priceField.getText()));
+            selectedProduct.setPrice(Long.parseLong(priceField.getText())); // DIUBAH
             selectedProduct.setStock(Integer.parseInt(stockField.getText()));
             
             ProductAction updateAction = new UpdateProduct(productDAO, selectedProduct);
             
             if (updateAction.execute()) {
                 statusLabel.setText("Produk berhasil diupdate!");
-                loadProductData(); // Refresh tabel
-                clearFields();     // Kosongkan form
+                loadProductData();
+
+                clearFields();
             } else {
                 statusLabel.setText("Gagal mengupdate produk.");
             }
@@ -141,8 +123,8 @@ public class ProductController {
         
         if (hapusAction.execute()) {
             statusLabel.setText("Produk berhasil dihapus.");
-            loadProductData(); // Refresh tabel
-            clearFields();     // Kosongkan form
+            loadProductData();
+            clearFields();
         } else {
             statusLabel.setText("Gagal menghapus produk.");
         }
