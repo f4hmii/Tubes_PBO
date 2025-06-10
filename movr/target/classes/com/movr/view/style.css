@@ -1,7 +1,7 @@
 /* Mengatur background dan font default untuk seluruh window */
 .root {
     -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-background-color: #0099ff; /* Warna abu-abu muda */
+   
 }
 
 /* Mengatur semua tombol */
@@ -18,7 +18,7 @@
 
 /* Mengatur header kolom pada tabel */
 .table-view .column-header-background {
-    -fx-background-color: #37474F;
+    -fx-background-color: #00f2ff;
 }
 
 .table-view .column-header .label {

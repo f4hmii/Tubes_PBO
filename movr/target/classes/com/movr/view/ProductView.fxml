@@ -14,7 +14,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.movr.controller.ProductController">
     <top>
-        <Label text="Manajemen Data Produk" BorderPane.alignment="CENTER">
+        <Label text="CRUD PRODUK MOVR" BorderPane.alignment="CENTER">
             <font>
                 <Font name="System Bold" size="24" />
             </font>
